@@ -1,0 +1,17 @@
+1 10 cd
+1 15 abc
+1 20 abf
+1 25 acdf
+2 10 abf
+3 10 dgh
+3 20 bf
+3 25 agh
+4 15 abf
+4 20 e
+5 10 ab
+5 25 df
+5 45 c
+5 50 ab
+5 65 c
+5 90 bd
+5 95 f

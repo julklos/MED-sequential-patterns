@@ -1,0 +1,10 @@
+1 10 banan, gruszka, jabłko
+1 15 ser, banan, majonez
+1 20 proszek, woda, chleb
+1 25 jabłko, banan, jogurt
+2 15 jogurt, masło orzechowe, banan
+2 20 chleb, banan, majonez
+3 10 proszek
+4 10 banan
+4 20 jogurt, masło orzechowe
+4 25 gruszka
