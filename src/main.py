@@ -8,7 +8,7 @@ if __name__ == "__main__":
     # .spmf newline= "-2" splitter = "-1"
     dp = DataProcessor(newline="-2", splitter="-1")
     try :
-        data = dp.load("../data/short_d.spmf")
+        data = dp.load("data/FIFA.spmf")
     except OSError:
         print("Nie można otworzyć pliku")
 
@@ -17,6 +17,6 @@ if __name__ == "__main__":
 
     # al1 = PrefixSpan(data)
     # print( al1.run() )
-    al1 = GSP(data)
-    min_support = 3 ## parametr do pliku + dodaj 
-    print( "here", al1.run(min_support) )
+    #al1 = GSP(data)
+    #min_support = 3 ## parametr do pliku + dodaj 
+    #print( "here", al1.run(min_support) )

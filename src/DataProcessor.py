@@ -27,8 +27,11 @@ class DataProcessor():
         # split itemsets
         itemset = itemset.split(splitter)
         # delete whitespaces
-        itemset = [i.strip() for i in itemset if i.strip()]
-        if splitter == "-1":
-            itemset = [self.preprocess_spmf_itemset(i, " ") for i in itemset ]
+        itemset = [self.split_into_char(i.replace(" ","")) for i in itemset if i.strip()]
+        #if splitter == "-1":
+        #    itemset = [self.preprocess_spmf_itemset(i, " ") for i in itemset ]
         return itemset
+
+    def split_into_char(self, word):
+        return [char for char in word]
         
