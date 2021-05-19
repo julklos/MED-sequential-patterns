@@ -5,3 +5,7 @@ class Sequence() :
         self._itemsets = itemsets
     def  __str__(self):
         return "Id: "+str(self._id)+" items: "+ str(self._itemsets)
+    
+    def get_unique_values(self):
+        flatten = sum(self._itemsets, [])
+        return set(flatten)
