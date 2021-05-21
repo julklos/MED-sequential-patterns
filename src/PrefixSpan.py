@@ -13,6 +13,40 @@ class PrefixSpan(SequentialPatternAlgorithm):
         freq = self._frequency_items(alpha, sequencesDb)
         print(freq)
 
+        # for every pattern p in freq
+        # p can be assembled to the last element of alpha or can be add as sequential pattern
+        for f in freq :    
+            newAlpha = []
+
+            # if _item
+            if "_" in f :
+                for itemset in alpha :
+                    newAlpha.append(itemset)
+
+                #get the last element of alpha    
+                newItemset = newAlpha[-1]
+                f.remove('_')
+                newItemset.append(f)
+                newItemset.sort()
+                # assemble p as the last element of alpha
+                newAlpha[-1] = newItemset
+
+            # if item
+            else :
+                if len(alpha != 0):
+                    for itemset in alpha :
+                        newAlpha.append(itemset)
+                
+                newItemset = [f]
+                newAlpha.append(newItemset)
+
+            print(newAlpha)
+
+
+    def _getSuffix(self, sequenceDb, prefix):
+        found = False    
+
+
     def _frequency_items(self, alpha, sequencesDb):
 
         seqFreq = {}
