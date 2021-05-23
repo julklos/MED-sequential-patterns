@@ -33,7 +33,7 @@ class PrefixSpan(SequentialPatternAlgorithm):
 
             # if item
             else :
-                if len(alpha != 0):
+                if len(alpha) != 0:
                     for itemset in alpha :
                         newAlpha.append(itemset)
                 
@@ -43,8 +43,43 @@ class PrefixSpan(SequentialPatternAlgorithm):
             print(newAlpha)
 
 
-    def _getSuffix(self, sequenceDb, prefix):
-        found = False    
+    def _getSuffix(self, sequence, prefix):
+        found = False
+
+        for i,itemset in enumerate(sequence):
+            if self._containAll(prefix,itemset):
+                found = True
+                break
+
+            else :
+                item_tmp = itemset[0].copy()
+                if len(prefix) > 0 and '_' in itemset[0] and prefix[-1] == item_tmp.remove('_'):
+                    found = True
+                    break
+
+        if found:
+            suffix = sequence[i:].copy()
+            first_suffix = suffix[0]
+
+            if '_' in first_suffix[0] :
+                    first_suffix.pop(0)
+            else :
+                to_delete = []
+                itemset_new = self._removeAll(first_suffix, prefix)
+                for item in enumerate(itemset_new):
+                    if item < prefix[-1]:
+                        to_delete.append(item)
+                for e in to_delete:
+                     itemset_new.remove(item)
+
+            if len(itemset_new) != 0 :
+                itemset_new.sort()
+                suffix[0] = itemset_new
+            else : suffix.pop[0]
+
+            return suffix
+            
+        else: return None
 
 
     def _frequency_items(self, alpha, sequencesDb):
