@@ -9,3 +9,6 @@ class Sequence() :
     def get_unique_values(self):
         flatten = sum(self._itemsets, [])
         return set(flatten)
+    
+    def get_itemsets(self):
+        return self._itemsets
