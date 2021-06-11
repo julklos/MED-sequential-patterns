@@ -1,6 +1,7 @@
 from SequentialPatternAlgorithm import SequentialPatternAlgorithm
 import copy
 from Sequence import Sequence
+from Pattern import Pattern
 
 class PrefixSpan(SequentialPatternAlgorithm):
 
@@ -9,23 +10,16 @@ class PrefixSpan(SequentialPatternAlgorithm):
     def run(self):
         self._final_sequences = []
         self._prefix_span([], self._data)
-        self._final_sequences = list(self.uniq(self._final_sequences))
         return self._final_sequences
 
-    def uniq(self,lst):
-        last = object()
-        for item in lst:
-            if item == last:
-                continue
-            yield item
-            last = item
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
-
+        print(freq)
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
-        for f in freq :    
+        for f in freq :  
+            print(freq[f])  
             newAlpha = []
 
             # if _item
@@ -50,7 +44,8 @@ class PrefixSpan(SequentialPatternAlgorithm):
                 newItemset = [f]
                 newAlpha.append(newItemset)
 
-            self._final_sequences.append(newAlpha)
+            #TO DO: find the suuport of Patern and take min
+            self._final_sequences.append(Pattern(newAlpha, freq[f]))
             projectedDb = []
 
             for sequence in sequencesDb :
