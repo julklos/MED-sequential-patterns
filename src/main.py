@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     al1 = PrefixSpan(data, 3)
     al1.run()
-    print( al1.run() )
+    al1.printFinalSequence()
     # al1 = GSP(data,2)
     # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
     # print( "here", al1.run() )

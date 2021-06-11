@@ -22,7 +22,6 @@ class PrefixSpan(SequentialPatternAlgorithm):
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
-        print(freq)
 
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
@@ -51,14 +50,11 @@ class PrefixSpan(SequentialPatternAlgorithm):
                 newItemset = [f]
                 newAlpha.append(newItemset)
 
-            print(newAlpha)
-
             self._final_sequences.append(newAlpha)
             projectedDb = []
 
             for sequence in sequencesDb :
                 projectedSequence = self._removeInfrequentElements(sequence, freq)
-                print(projectedSequence)
                 suffix = self._getSuffix(projectedSequence, newAlpha[-1])
                 if suffix != None and len(suffix.get_itemsets()) != 0 :
                     projectedDb.append(suffix)
@@ -72,8 +68,6 @@ class PrefixSpan(SequentialPatternAlgorithm):
         projectedSequence.delete_infrequent_item_from_itemset(freq)
         return projectedSequence
                 
-
-
 
     def _getSuffix(self, sequence, prefix):
         found = False
