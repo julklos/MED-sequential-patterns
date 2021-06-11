@@ -11,7 +11,9 @@ class SequentialPatternAlgorithm(ABC) :
         self._data = data
     
     def printFinalSequence(self):
-        print(self._final_sequences)
+        print("Znalezione wzorce sekwencyjne:")
+        for sequence in self._final_sequences :
+            print(sequence)
     
     def exportFinalSequence(self):
         pass
