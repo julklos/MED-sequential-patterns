@@ -23,22 +23,18 @@ if __name__ == "__main__":
         splitter = "-1"
     dp = DataProcessor(newline=newline,  splitter=splitter)
     try :
-<<<<<<< HEAD
         data = dp.load(path+file_name)
-=======
-        data = dp.load("data/short_d.spmf")
->>>>>>> fd38f9cc48bda5203d1e9e87cd6925c09cc78c85
     except OSError:
         print("Nie można otworzyć pliku")
 
     for seq in data:
         print(seq)
 
-    al1 = PrefixSpan(data, 2)
-    al1.run()
+    #al1 = PrefixSpan(data, 2)
+    #al1.run()
     # print( al1.run() )
-    al1 = GSP(data)
+    al1 = GSP(data,2)
     min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
-    print( "here", al1.run(min_support) )
+    print( "here", al1.run() )
 
     
