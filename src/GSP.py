@@ -1,4 +1,5 @@
 from SequentialPatternAlgorithm import SequentialPatternAlgorithm
+import numpy as np
 
 class GSP(SequentialPatternAlgorithm):
       
@@ -12,11 +13,11 @@ class GSP(SequentialPatternAlgorithm):
                     candidates[unique] += 1
                 else:
                     candidates[unique] = 1
-       # output_candidates = [key for key, value in candidates.items() if value > self._min_sup]
-        output_candidates = [( [key], value) for key, value in candidates.items() if value > self._min_support]
+        output_candidates = [[key] for key, value in candidates.items() if value > self._min_support]
+        #output_candidates = [( [key], value) for key, value in candidates.items() if value > self._min_support]
 
-        #output_candidates.sort()
-        output_candidates.sort(key=lambda x: x[0])
+        output_candidates.sort()
+        #output_candidates.sort(key=lambda x: x[0])
         return output_candidates
     def generate_new_candidates (self, freq_pat):
         """
@@ -32,9 +33,11 @@ class GSP(SequentialPatternAlgorithm):
             for d in freq_pat:
                 #print(c,d)
                 merged_candidate = self.merge_candidates (c, d)
+                #print(merged_candidate)
                 if merged_candidate and (merged_candidate not in new_candidates):
                     new_candidates.append(merged_candidate)
                 merged_set = self.merge_set_candidates(c,d)
+                #print(merged_set)
                 if merged_set and (merged_set not in new_candidates):
                     new_candidates.append (merged_set)
         ## Postconditions & return:
@@ -45,10 +48,11 @@ class GSP(SequentialPatternAlgorithm):
         else:
             return None
     def merge_set_candidates(self,a,b):
-        print(type(a),type(b),a,b, a)
         if a[1:] == b[:-1] and (a is not b):
-            x = sorted(a + b[-1:])
-            return [x]
+            print(a,b,a + b[-1:])
+            x = sorted(set(a + b[-1:]))
+            print(x)
+            return x
         else:
             return None
            
@@ -56,11 +60,9 @@ class GSP(SequentialPatternAlgorithm):
     def filter_candidates(self,candidates):
         filtered_candidates = []
         for c in candidates:
-            print(c)
             curr_cand_hits = self.single_candidate_freq (c)
-            if self._min_support <= curr_cand_hits:
+            if self._min_support <= curr_cand_hits and (c not in self.freq_items):
                 filtered_candidates.append ((c, curr_cand_hits))
-                print(c)
         return filtered_candidates
     def single_candidate_freq (self, c):
     #     """
@@ -74,6 +76,7 @@ class GSP(SequentialPatternAlgorithm):
     def search_sequence (self, seq, cand):
             len_c = len(cand)
             l = seq.get_itemsets()
+            #return any(self.search_transactions(l[i:len_c + i], cand) for i in range(len(l) - len_c + 1))
             return any(self.search_transactions(l[i:len_c + i], cand) for i in range(len(l) - len_c + 1))
 
     def search_transactions (self, t, c):
@@ -95,15 +98,13 @@ class GSP(SequentialPatternAlgorithm):
         ## create this weird loop
         while new_patterns and k_items < 3:
             self.freq_items += new_patterns
-            print(len(self.freq_items))
-            candidates = self.generate_new_candidates ([x[0] for x in new_patterns])
+            print('new',new_patterns)
+            candidates = self.generate_new_candidates ([x for x in self.freq_items])
             print ("There are %s new candidates." % len (candidates))
-            # print(candidates)
+            print(candidates)
             new_patterns = candidates
             print('new_patterns')
-            for c in candidates:
-                print(c)
-            new_patterns = self.filter_candidates (candidates) 
+           # new_patterns = self.filter_candidates (candidates) 
             print(new_patterns, len(new_patterns))
             k_items+=1
         print(self.freq_items)
