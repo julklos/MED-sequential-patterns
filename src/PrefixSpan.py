@@ -1,17 +1,27 @@
 from SequentialPatternAlgorithm import SequentialPatternAlgorithm
+import copy
+from Sequence import Sequence
 
 class PrefixSpan(SequentialPatternAlgorithm):
 
     PLACEHOLDER = "_"
 
     def run(self):
-
+        self._final_sequences = []
         self._prefix_span([], self._data)
-        return self._data
+        self._final_sequences = list(self.uniq(self._final_sequences))
+        return self._final_sequences
+
+    def uniq(self,lst):
+        last = object()
+        for item in lst:
+            if item == last:
+                continue
+            yield item
+            last = item
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
-        print(freq)
 
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
@@ -25,7 +35,7 @@ class PrefixSpan(SequentialPatternAlgorithm):
 
                 #get the last element of alpha    
                 newItemset = newAlpha[-1]
-                f.remove('_')
+                f.replace('_', '')
                 newItemset.append(f)
                 newItemset.sort()
                 # assemble p as the last element of alpha
@@ -40,44 +50,61 @@ class PrefixSpan(SequentialPatternAlgorithm):
                 newItemset = [f]
                 newAlpha.append(newItemset)
 
-            print(newAlpha)
+            self._final_sequences.append(newAlpha)
+            projectedDb = []
 
+            for sequence in sequencesDb :
+                projectedSequence = self._removeInfrequentElements(sequence, freq)
+                suffix = self._getSuffix(projectedSequence, newAlpha[-1])
+                if suffix != None and len(suffix.get_itemsets()) != 0 :
+                    projectedDb.append(suffix)
+            
+            if len(projectedDb) != 0 :
+                self._prefix_span(newAlpha, projectedDb)
+
+    def _removeInfrequentElements(self, sequence, freq):
+
+        projectedSequence = copy.deepcopy(sequence)
+        projectedSequence.delete_infrequent_item_from_itemset(freq)
+        return projectedSequence
+                
 
     def _getSuffix(self, sequence, prefix):
         found = False
 
-        for i,itemset in enumerate(sequence):
+        for i,itemset in enumerate(sequence.get_itemsets()):
             if self._containAll(prefix,itemset):
                 found = True
                 break
 
             else :
-                item_tmp = itemset[0].copy()
-                if len(prefix) > 0 and '_' in itemset[0] and prefix[-1] == item_tmp.remove('_'):
+                item_tmp = itemset[0].replace('_', '')
+                if len(prefix) > 0 and '_' in itemset[0] and prefix[-1] == item_tmp:
                     found = True
                     break
 
         if found:
-            suffix = sequence[i:].copy()
-            first_suffix = suffix[0]
+            suffix = sequence.get_itemsets()[i:].copy()
+            first_suffix = suffix[0].copy()
 
             if '_' in first_suffix[0] :
-                    first_suffix.pop(0)
+                first_suffix.pop(0)
             else :
                 to_delete = []
-                itemset_new = self._removeAll(first_suffix, prefix)
-                for item in enumerate(itemset_new):
+                first_suffix= self._removeAll(first_suffix, prefix)
+                for item in first_suffix:
                     if item < prefix[-1]:
                         to_delete.append(item)
                 for e in to_delete:
-                     itemset_new.remove(item)
+                     first_suffix.remove(e)
 
-            if len(itemset_new) != 0 :
-                itemset_new.sort()
-                suffix[0] = itemset_new
-            else : suffix.pop[0]
+            if len(first_suffix) != 0 :
+                first_suffix.sort()
+                suffix[0] = first_suffix
+            else : 
+                suffix.pop(0)
 
-            return suffix
+            return Sequence(suffix)
             
         else: return None
 
@@ -129,8 +156,6 @@ class PrefixSpan(SequentialPatternAlgorithm):
         #remove infrequent items
         newSeqFreq = dict((k,v) for k,v in seqFreq.items() if v > self._min_support)
         return newSeqFreq
-
-
 
     def _containAll(self, list1, list2):
 

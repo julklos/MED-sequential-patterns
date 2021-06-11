@@ -9,7 +9,7 @@ def check_if_spmf(file_name):
 
 
 if __name__ == "__main__":
-    path = "../data/"
+    path = "data/"
     file_name = "short_d.spmf"
     # TODO: pętla - wpisywanie nazwy pliku,  sprawdzenie czy spfm i txt- txt, chyba trzeba dodac parsowanie per nr indexu oraz czas (?)
     # .txt newline = "\n" splitter= " "
@@ -30,11 +30,11 @@ if __name__ == "__main__":
     for seq in data:
         print(seq)
 
-    #al1 = PrefixSpan(data, 2)
-    #al1.run()
-    # print( al1.run() )
-    al1 = GSP(data,2)
-    min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
-    print( "here", al1.run() )
+    al1 = PrefixSpan(data, 3)
+    al1.run()
+    al1.printFinalSequence()
+    # al1 = GSP(data,2)
+    # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
+    # print( "here", al1.run() )
 
     

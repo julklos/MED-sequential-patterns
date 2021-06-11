@@ -20,7 +20,7 @@ class DataProcessor():
         # delete empty
         sequences = [x for x in sequences if x]
         # create array
-        sequences_obj = [ Sequence(idx, self.preprocess_spmf_itemset(val, self.splitter) ) for idx, val in enumerate(sequences) ]
+        sequences_obj = [ Sequence(self.preprocess_spmf_itemset(val, self.splitter), idx) for idx, val in enumerate(sequences) ]
         return sequences_obj
 
     def preprocess_spmf_itemset(self, itemset, splitter):
