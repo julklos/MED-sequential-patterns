@@ -4,7 +4,7 @@ class SequentialPatternAlgorithm(ABC) :
 
     def __init__(self, data, min_support):
         self._data = data
-        self._final_sequences = []
+        self._final_sequences = {}
         self._min_support = min_support
     
     def set_data(self,data):
