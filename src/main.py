@@ -22,6 +22,7 @@ if __name__ == "__main__":
     min_support = config.getfloat('configuration', 'min_support')
     max_length = config.getint('configuration', 'max_length')
     min_length = config.getint('configuration', 'min_length')
+    splitter = config.get('configuration', 'splitter')
 
     # TODO: pętla - wpisywanie nazwy pliku,  sprawdzenie czy spfm i txt- txt, chyba trzeba dodac parsowanie per nr indexu oraz czas (?)
     # .txt newline = "\n" splitter= " "
@@ -31,17 +32,14 @@ if __name__ == "__main__":
         splitter = "-1"
     else:
         # TODO: pobranie z pliku
-        newline = "-2"
-        splitter = "-1"
+        newline = "\n"
+        splitter = splitter
     
     dp = DataProcessor(newline=newline,  splitter=splitter)
     try :
         data = dp.load(input_path)
     except OSError:
         print("Nie można otworzyć pliku")
-
-    # for seq in data:
-    #     print(seq)
 
     al1 = GSP(data, min_support)
     al1.run()
