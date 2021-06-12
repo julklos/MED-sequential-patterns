@@ -15,7 +15,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
-        print(freq)
+
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
         for f in freq :  
@@ -50,6 +50,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                 newAlphafreq = min(freq[f], alpha.get_value())
             newPattern = Pattern(newAlpha, newAlphafreq)
             self._final_sequences.append(newPattern)
+
             projectedDb = []
 
             for sequence in sequencesDb :
