@@ -56,6 +56,8 @@ class GSP(SequentialPatternAlgorithm):
         cand = self.generate_initial_candidates()
         new_patterns  = cand
         self.freq_items = []
+
+        self.print_candidates(new_patterns)
         ## create this weird loop
         while len(new_patterns):
             self.freq_items += new_patterns
@@ -68,5 +70,6 @@ class GSP(SequentialPatternAlgorithm):
             # content = self.write_candidates(new_patterns)
             # f.write(content)
             # f.close()
+        print('final')
         self.print_candidates(self.freq_items)
         return self.freq_items

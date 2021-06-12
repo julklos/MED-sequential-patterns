@@ -20,7 +20,7 @@ class Sequence() :
     def get_id(self):
         return self._id
     
-    def delete_infrequent_item_from_itemset(self, freq):
+    def frequent_item_from_itemset(self, freq):
         new_itemsets = []
         for itemset in self._itemsets :
             new_itemset = []
@@ -29,9 +29,4 @@ class Sequence() :
                     new_itemset.append(item)
             if len(new_itemset) != 0 :
                 new_itemsets.append(new_itemset)
-        self._itemsets = new_itemsets
-        
-        
-
-    
-    
+        return new_itemsets

@@ -1,36 +1,34 @@
 from SequentialPatternAlgorithm import SequentialPatternAlgorithm
-import copy
 from Sequence import Sequence
+from Pattern import Pattern
 
-class PrefixSpan(SequentialPatternAlgorithm):
+class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
 
     PLACEHOLDER = "_"
 
     def run(self):
+        print("Start Prefix Span Algorithm...")
+        print("Min support:" +str(self._min_support))
+        print("Sequences: " + str(len(self._data)))
         self._final_sequences = []
-        self._prefix_span([], self._data)
-        self._final_sequences = list(self.uniq(self._final_sequences))
+        self._prefix_span(Pattern([]), self._data)
+        print("Stop Prefix Span Algorithm...")
         return self._final_sequences
 
-    def uniq(self,lst):
-        last = object()
-        for item in lst:
-            if item == last:
-                continue
-            yield item
-            last = item
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
 
+        if len(alpha.get_pattern()) >= self._max_seq_length:
+            return 
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
-        for f in freq :    
+        for f in freq :  
             newAlpha = []
 
             # if _item
             if "_" in f :
-                for itemset in alpha :
+                for itemset in alpha.get_pattern() :
                     newAlpha.append(itemset)
 
                 #get the last element of alpha    
@@ -43,30 +41,36 @@ class PrefixSpan(SequentialPatternAlgorithm):
 
             # if item
             else :
-                if len(alpha) != 0:
-                    for itemset in alpha :
+                if len(alpha.get_pattern()) != 0:
+                    for itemset in alpha.get_pattern() :
                         newAlpha.append(itemset)
                 
                 newItemset = [f]
                 newAlpha.append(newItemset)
+            #TO DO: find the suuport of Patern and take min - class Pattern
+            if alpha.get_value() == None :
+                newAlphafreq = freq[f]
+            else :
+                newAlphafreq = min(freq[f], alpha.get_value())
+            newPattern = Pattern(newAlpha, newAlphafreq)
+            if newPattern.get_pattern_size() >= self._min_seq_length:
+                self._final_sequences.append(newPattern)
 
-            self._final_sequences.append(newAlpha)
             projectedDb = []
 
             for sequence in sequencesDb :
                 projectedSequence = self._removeInfrequentElements(sequence, freq)
-                suffix = self._getSuffix(projectedSequence, newAlpha[-1])
+                suffix = self._getSuffix(projectedSequence, newPattern.get_pattern()[-1])
                 if suffix != None and len(suffix.get_itemsets()) != 0 :
                     projectedDb.append(suffix)
             
             if len(projectedDb) != 0 :
-                self._prefix_span(newAlpha, projectedDb)
+                self._prefix_span(newPattern, projectedDb)
 
     def _removeInfrequentElements(self, sequence, freq):
 
-        projectedSequence = copy.deepcopy(sequence)
-        projectedSequence.delete_infrequent_item_from_itemset(freq)
-        return projectedSequence
+        projectedSequence = sequence.frequent_item_from_itemset(freq)
+        return Sequence(projectedSequence)
                 
 
     def _getSuffix(self, sequence, prefix):
@@ -114,13 +118,13 @@ class PrefixSpan(SequentialPatternAlgorithm):
         seqFreq = {}
 
         #get the last itemset of alpha
-        if len(alpha) != 0:
-            last_itemset = alpha[-1]
+        if len(alpha.get_pattern()) != 0:
+            last_itemset = alpha.get_pattern()[-1]
         else:
             last_itemset = []
 
         for sequence in sequencesDb :
-
+            sequenceItems = set()
             for itemset in sequence.get_itemsets():
                 #see if the itemset contains all items from alpha last itemset
                 #if yes then item after the last item of alpha last itemset as _item and item
@@ -128,33 +132,27 @@ class PrefixSpan(SequentialPatternAlgorithm):
                     
                     # add item in last itemset in alpha
                     for item in last_itemset:
-                        if item in seqFreq:
-                            seqFreq[item] = seqFreq[item] +1
-                        else:
-                            seqFreq[item] = 1
+                        sequenceItems.add(item)
                     
                     # add items not included in alpha last itemset
                     leftItemset = self._removeAll(itemset.copy(), last_itemset)
                     for item in leftItemset :
-                        if item in seqFreq:
-                            seqFreq[item] = seqFreq[item] +1
-                        else:
-                            seqFreq[item] = 1
-
-                        if "_" + item in seqFreq:
-                            seqFreq["_" + item] = seqFreq[item] +1
-                        else:
-                            seqFreq["_" + item] = 1
+                        sequenceItems.add(item)
+                        sequenceItems.add("_" + item)
                     
                 else:
                     for item in itemset:
-                        if item in seqFreq:
-                            seqFreq[item] = seqFreq[item] +1
-                        else:
-                            seqFreq[item] = 1
+                        sequenceItems.add(item)
+                
+            #add sequenceItems to seqFreq
+            for item in sequenceItems :
+                if item in seqFreq :
+                    seqFreq[item] = seqFreq[item] + 1
+                else :
+                    seqFreq[item] = 1
 
         #remove infrequent items
-        newSeqFreq = dict((k,v) for k,v in seqFreq.items() if v > self._min_support)
+        newSeqFreq = dict((k,v) for k,v in seqFreq.items() if v >= self._min_support)
         return newSeqFreq
 
     def _containAll(self, list1, list2):
