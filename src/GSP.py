@@ -52,7 +52,7 @@ class GSP(SequentialPatternAlgorithm):
         return output
     
     def run(self):
-        
+        ## add- max.sequential_length
         cand = self.generate_initial_candidates()
         new_patterns  = cand
         self.freq_items = []
@@ -62,14 +62,12 @@ class GSP(SequentialPatternAlgorithm):
         while len(new_patterns):
             self.freq_items += new_patterns
             candidates = self.generate_new_candidates(self.freq_items)
-            print ("There are %s new candidates." % len (candidates))
             new_patterns = self.filter_candidates (candidates)
-            print('After filtering there are %s patterns.' % len (new_patterns))
             # self.print_candidates(new_patterns)
             # f = open("demofile"+str(k_items)+"+1.txt", "a")
             # content = self.write_candidates(new_patterns)
             # f.write(content)
             # f.close()
-        print('final')
-        self.print_candidates(self.freq_items)
-        return self.freq_items
+        #self.print_candidates(self.freq_items)
+        self._final_sequences = self.freq_items
+        return self._final_sequences
