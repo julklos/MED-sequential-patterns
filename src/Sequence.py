@@ -1,8 +1,12 @@
+from Transaction import Transaction
 class Sequence() :
 
     def __init__(self,  itemsets, id = -1):
         self._id = id
         self._itemsets = itemsets
+        self._transactions = [Transaction(items) for items in  self._itemsets]
+        print(self._itemsets)
+        
     def  __str__(self):
         return "Id: "+str(self._id)+" items: "+ str(self._itemsets)
     
@@ -26,3 +30,8 @@ class Sequence() :
             if len(new_itemset) != 0 :
                 new_itemsets.append(new_itemset)
         self._itemsets = new_itemsets
+        
+        
+
+    
+    
