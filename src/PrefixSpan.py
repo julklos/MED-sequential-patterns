@@ -10,6 +10,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
     def run(self):
         self._final_sequences = []
         self._prefix_span(Pattern([]), self._data)
+
         return self._final_sequences
 
 
