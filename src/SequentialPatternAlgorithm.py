@@ -3,10 +3,10 @@ import math
 
 class SequentialPatternAlgorithm(ABC) :
 
-    def __init__(self, data, min_support = 1, max_seq_length = math.inf, min_seq_length = 1):
+    def __init__(self, data, min_support = 0.01, max_seq_length = math.inf, min_seq_length = 1):
         self._data = data
         self._final_sequences = {}
-        self._min_support = min_support
+        self._min_support = int(min_support * len(self._data))
         self._max_seq_length = max_seq_length
         self._min_seq_length = min_seq_length
     

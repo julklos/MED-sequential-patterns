@@ -1,5 +1,4 @@
 from SequentialPatternAlgorithm import SequentialPatternAlgorithm
-import copy
 from Sequence import Sequence
 from Pattern import Pattern
 
@@ -8,15 +7,20 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
     PLACEHOLDER = "_"
 
     def run(self):
+        print("Start Prefix Span Algorithm...")
+        print("Min support:" +str(self._min_support))
+        print("Sequences: " + str(len(self._data)))
         self._final_sequences = []
         self._prefix_span(Pattern([]), self._data)
-
+        print("Stop Prefix Span Algorithm...")
         return self._final_sequences
 
 
     def _prefix_span(self, alpha, sequencesDb):
         freq = self._frequency_items(alpha, sequencesDb)
 
+        if len(alpha.get_pattern()) >= self._max_seq_length:
+            return 
         # for every pattern p in freq
         # p can be assembled to the last element of alpha or can be add as sequential pattern
         for f in freq :  
@@ -43,14 +47,14 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                 
                 newItemset = [f]
                 newAlpha.append(newItemset)
-
             #TO DO: find the suuport of Patern and take min - class Pattern
             if alpha.get_value() == None :
                 newAlphafreq = freq[f]
             else :
                 newAlphafreq = min(freq[f], alpha.get_value())
             newPattern = Pattern(newAlpha, newAlphafreq)
-            self._final_sequences.append(newPattern)
+            if newPattern.get_pattern_size() >= self._min_seq_length:
+                self._final_sequences.append(newPattern)
 
             projectedDb = []
 
@@ -65,9 +69,8 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
 
     def _removeInfrequentElements(self, sequence, freq):
 
-        projectedSequence = copy.deepcopy(sequence)
-        projectedSequence.delete_infrequent_item_from_itemset(freq)
-        return projectedSequence
+        projectedSequence = sequence.frequent_item_from_itemset(freq)
+        return Sequence(projectedSequence)
                 
 
     def _getSuffix(self, sequence, prefix):

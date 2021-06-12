@@ -1,9 +1,11 @@
 from Sequence import Sequence
+import math
 class DataProcessor():
 
-    def __init__(self, newline = "-2", splitter = "-1"):
+    def __init__(self, newline = "-2", splitter = "-1", limit = math.inf):
         self.newline = newline
         self.splitter = splitter
+        self.limit = limit
 
     def load(self,path):
         return self.load_file(path)
@@ -19,6 +21,8 @@ class DataProcessor():
         sequences = content.split(self.newline)
         # delete empty
         sequences = [x for x in sequences if x]
+        if len(sequences) > self.limit :
+            sequences = sequences[:self.limit]
         # create array
         sequences_obj = [ Sequence(self.preprocess_spmf_itemset(val, self.splitter), idx) for idx, val in enumerate(sequences) ]
         return sequences_obj

@@ -13,3 +13,6 @@ class Pattern():
     
     def get_value(self):
         return self.value
+
+    def get_pattern_size(self):
+        return len(self.pattern)

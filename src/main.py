@@ -11,7 +11,8 @@ def check_if_spmf(file_name):
 
 if __name__ == "__main__":
     path = "data/"
-    file_name = "test.spmf"
+    # file_name = "test.spmf"
+    file_name = "FIFA.spmf"
     # TODO: pętla - wpisywanie nazwy pliku,  sprawdzenie czy spfm i txt- txt, chyba trzeba dodac parsowanie per nr indexu oraz czas (?)
     # .txt newline = "\n" splitter= " "
     # .spmf newline= "-2" splitter = "-1"
@@ -28,10 +29,10 @@ if __name__ == "__main__":
     except OSError:
         print("Nie można otworzyć pliku")
 
-    for seq in data:
-        print(seq)
+    # for seq in data:
+    #     print(seq)
 
-    al1 = PrefixSpanAlgorithm(data, 3)
+    al1 = PrefixSpanAlgorithm(data, 0.2)
     al1.run()
     al1.printFinalSequence()
     # al1 = GSP(data,2)
@@ -39,9 +40,9 @@ if __name__ == "__main__":
     # print( "here", al1.run() )
 
     db = [
-        ['C', 'A', 'G', 'A', 'A', 'G','T' ],
-        ['T', 'G','A','C','A','G'],
-        ['G','A','A','G','T']
+            ['C', 'A', 'G', 'A', 'A', 'G','T' ],
+            ['T', 'G','A','C','A','G'],
+            ['G','A','A','G','T']
         ]
 
     print(PrefixSpan(db).frequent(3))
