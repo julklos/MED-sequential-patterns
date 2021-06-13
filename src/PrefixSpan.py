@@ -6,7 +6,7 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
 
-class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
+class PrefixSpan(SequentialPatternAlgorithm):
 
     PLACEHOLDER = "_"
 
