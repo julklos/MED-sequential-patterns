@@ -6,6 +6,7 @@ from DataProcessor import DataProcessor
 import configparser
 import json
 import logging 
+import sys
 
 def check_if_spmf(file_name):
     extention = file_name.split('.')[-1]
@@ -13,9 +14,12 @@ def check_if_spmf(file_name):
 
 
 if __name__ == "__main__":
+    ## read path to config file
+    config_path = sys.argv[1]
+    if not config_path:
+        raise Exception("Missing config file/Wrong path")
     ## reading config file
     config = configparser.ConfigParser()
-    config_path = r"/home/patrycja/Desktop/Repositories/MED-sequential-patterns/src/setup.cfg"
     try:
         config.read(config_path)
     except Exception as e :
@@ -48,23 +52,36 @@ if __name__ == "__main__":
     except OSError:
         logging.error("Nie można otworzyć pliku")
 
-    # for seq in data:
-    #      print(seq)
-
-    al1 = PrefixSpan(data, min_support)
+    if algorithm == "GSP":
+        al1 = GSP(data,min_support=min_support, max_seq_length=max_length, min_seq_length=min_length)
+        
+    elif algorithm == "PrefixSpan":
+        al1 = PrefixSpan(data, min_support,max_seq_length=max_length, min_seq_length=min_length)
+    else: 
+        raise Exception("Unknown algorithm: choose GSP or PrefixSpan")
 
     output_data = al1.run()
-
     try :
         with open(output, 'w') as f:
             json.dump(output_data, f, indent=4)
         logging.info('Output saved to file')
     except Exception as e:
         print(e)
+
     #al1.printFinalSequence()
-    
-    print('Time: ' + str(output_data['time']))
-    print('Found sequences: ' + str(output_data['found_seq']))
+
+    # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
+    # print( "here", al1.run() )
+
+    # db = [
+    #         ['C', 'A', 'G', 'A', 'A', 'G','T' ],
+    #         ['T', 'G','A','C','A','G'],
+    #         ['G','A','A','G','T'],
+    #         []
+    #     ]
+
+    # print(PrefixSpan(db).frequent(3))
+
 
 
     
