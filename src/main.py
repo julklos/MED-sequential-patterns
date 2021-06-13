@@ -27,6 +27,7 @@ if __name__ == "__main__":
     min_support = config.getfloat('configuration', 'min_support')
     max_length = config.getint('configuration', 'max_length')
     min_length = config.getint('configuration', 'min_length')
+    splitter = config.get('configuration', 'splitter')
 
     # TODO: pętla - wpisywanie nazwy pliku,  sprawdzenie czy spfm i txt- txt, chyba trzeba dodac parsowanie per nr indexu oraz czas (?)
     # .txt newline = "\n" splitter= " "
@@ -36,8 +37,8 @@ if __name__ == "__main__":
         splitter = "-1"
     else:
         # TODO: pobranie z pliku
-        newline = "-2"
-        splitter = "-1"
+        newline = "\n"
+        splitter = splitter
     
     print(input_path)
 
@@ -51,6 +52,7 @@ if __name__ == "__main__":
          print(seq)
 
     al1 = PrefixSpanAlgorithm(data, min_support)
+
     al1.run()
     al1.printFinalSequence()
     # al1 = GSP(data,2)

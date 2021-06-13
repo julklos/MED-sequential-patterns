@@ -26,10 +26,14 @@ class GSP(SequentialPatternAlgorithm):
         new_candidates = []
         for pair in pairs:
             candidates_ = pair[0].generate_candidates(pair[1])
-            new_candidates += candidates_
+            for can_ in candidates_:
+                if not self.already_created(can_, new_candidates):
+                    new_candidates.append(can_)
         for pat in freq_pat:
             candidate_ = pat.generate_candidate()
-            new_candidates += candidate_
+            for can_ in candidate_:
+                if not self.already_created(can_, new_candidates):
+                    new_candidates.append(can_)
         new_candidates = [can_ for can_ in new_candidates if not self.already_created(can_, freq_pat)]
         return new_candidates
 

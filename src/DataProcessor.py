@@ -24,9 +24,37 @@ class DataProcessor():
         if len(sequences) > self.limit :
             sequences = sequences[:self.limit]
         # create array
-        sequences_obj = [ Sequence(self.preprocess_spmf_itemset(val, self.splitter), idx) for idx, val in enumerate(sequences) ]
+        if self.splitter == "-1":
+            sequences_obj = [ Sequence(self.preprocess_spmf_itemset(val, self.splitter), idx) for idx, val in enumerate(sequences) ]
+        else:
+            sequences = self.preprocess_file(sequences)
+            sequences_obj =  [ Sequence(val, idx) for idx, val in enumerate(sequences) ]
         return sequences_obj
-
+    def preprocess_file(self, sequences):
+        result = {}
+        final_ = []
+        for seq in sequences:
+            if seq[0] not in result.keys():
+                result[seq[0]] = []
+            val = result[seq[0]]
+            val.append(seq[1:].strip())
+            result[seq[0]] = val
+        for key, value in result.items():
+            transactions = []
+            for el in value:
+                ## maybe sort by digits..?
+                res  = ''.join(i for i in el if not i.isdigit()).strip()
+                if self.splitter:
+                    res = res.split(self.splitter)
+                    res = [ i.strip() for i in res]
+                else:
+                    res = self.split_into_char(res)
+                transactions.append(res)
+            final_.append(transactions)
+        print(transactions)
+        return final_
+            
+    
     def preprocess_spmf_itemset(self, itemset, splitter):
         # split itemsets
         itemset = itemset.split(splitter)
