@@ -1,7 +1,7 @@
 from PrefixSpan import PrefixSpanAlgorithm
 from GSP import GSP 
 from DataProcessor import DataProcessor
-from prefixspan import PrefixSpan
+#from prefixspan import PrefixSpan
 import configparser
 
 
@@ -14,7 +14,7 @@ def check_if_spmf(file_name):
 if __name__ == "__main__":
     ## reading config file
     config = configparser.ConfigParser()
-    config_path = r"/home/patrycja/Desktop/Repositories/MED-sequential-patterns/src/setup.cfg"
+    config_path = "./setup.cfg"
     try:
         config.read(config_path)
     except Exception as e :
@@ -51,11 +51,12 @@ if __name__ == "__main__":
     for seq in data:
          print(seq)
 
-    al1 = PrefixSpanAlgorithm(data, min_support)
+    # al1 = PrefixSpanAlgorithm(data, min_support)
 
+    # 
+    al1 = GSP(data,min_support=min_support, max_seq_length=max_length, min_seq_length=min_length)
     al1.run()
     al1.printFinalSequence()
-    # al1 = GSP(data,2)
     # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
     # print( "here", al1.run() )
 
@@ -66,7 +67,7 @@ if __name__ == "__main__":
             []
         ]
 
-    print(PrefixSpan(db).frequent(3))
+    # print(PrefixSpan(db).frequent(3))
 
 
     
