@@ -3,6 +3,9 @@ import numpy as np
 import itertools
 from Transaction import Transaction
 from ClientSequence import ClientSequence
+from timeit import default_timer as timer
+import logging
+
 class GSP(SequentialPatternAlgorithm):
 
     def generate_initial_candidates(self):
@@ -21,7 +24,7 @@ class GSP(SequentialPatternAlgorithm):
         """
 		Given existing patterns, generate a set of new patterns, one longer.
 		"""
-        print ("Generating new candidates...")
+        # print ("Generating new candidates...")
         pairs = list(itertools.combinations(freq_pat, 2))
         new_candidates = []
         for pair in pairs:
@@ -56,12 +59,20 @@ class GSP(SequentialPatternAlgorithm):
         return output
     
     def run(self):
-        ## add- max.sequential_length
+        logging.info("Algorithm parameters:")
+        logging.info("Min support: " +str(self._min_support))
+        logging.info("Max length pattern: " + str(self._max_seq_length))
+        logging.info("Min length pattern: " + str(self._min_seq_length))
+        logging.info("Rows: " + str(len(self._data)))
+        logging.info("Start GSP Algorithm...")
+
+        start = timer()
+
         cand = self.generate_initial_candidates()
         new_patterns  = cand
         self.freq_items = []
 
-        self.print_candidates(new_patterns)
+        #self.print_candidates(new_patterns)
         ## create this weird loop
         while len(new_patterns):
             self.freq_items += new_patterns
@@ -73,4 +84,34 @@ class GSP(SequentialPatternAlgorithm):
         if self._min_seq_length:
             self.freq_items = [freq_item for freq_item in self.freq_items if len(freq_item._items) >= self._min_seq_length]
         self._final_sequences = self.freq_items
-        return self._final_sequences
+
+        stop = timer()
+        self._time = stop - start
+        logging.info("Stop GSP Algorithm...")
+        logging.info("Time:" + str(self._time ))
+        output = self._createOutputDicrionary()
+        return output
+    
+    def _createOutputDicrionary(self):  
+        output = {}
+        parameters = {}
+        sequences = {}
+
+        parameters['algorithm'] = 'GSP'
+        parameters['min_support'] = self._min_support
+        parameters['max_seq_length'] = self._max_seq_length
+        parameters['min_seq_length'] = self._min_seq_length
+
+        for i,seq in enumerate(self._final_sequences) :
+            s = {}
+            s['pattern'] = seq.get_pattern()
+            s['support'] = seq.get_value()
+            sequences[i] = s
+
+        output['parameters'] = parameters
+        output['rows'] = len(self._data)
+        output['found_seq'] = len(self._final_sequences)
+        output['time'] = self._time
+        output['sequences'] = sequences
+    
+        return output
