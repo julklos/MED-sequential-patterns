@@ -1,0 +1,57 @@
+{
+    "parameters": {
+        "algorithm": "PrefixSpan",
+        "min_support": 2,
+        "max_seq_length": Infinity,
+        "min_seq_length": 1
+    },
+    "rows": 4,
+    "found_seq": 5,
+    "time": 0.0,
+    "sequences": {
+        "0": {
+            "pattern": [
+                [
+                    "1"
+                ]
+            ],
+            "support": 3
+        },
+        "1": {
+            "pattern": [
+                [
+                    "1"
+                ],
+                [
+                    "3"
+                ]
+            ],
+            "support": 2
+        },
+        "2": {
+            "pattern": [
+                [
+                    "1",
+                    "2"
+                ]
+            ],
+            "support": 2
+        },
+        "3": {
+            "pattern": [
+                [
+                    "2"
+                ]
+            ],
+            "support": 3
+        },
+        "4": {
+            "pattern": [
+                [
+                    "3"
+                ]
+            ],
+            "support": 2
+        }
+    }
+}

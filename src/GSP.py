@@ -3,6 +3,8 @@ import numpy as np
 import itertools
 from Transaction import Transaction
 from ClientSequence import ClientSequence
+from timeit import default_timer as timer
+
 class GSP(SequentialPatternAlgorithm):
 
     def generate_initial_candidates(self):
@@ -57,11 +59,14 @@ class GSP(SequentialPatternAlgorithm):
     
     def run(self):
         ## add- max.sequential_length
+        print("Start GSP Algorithm...")
+        start = timer()
+
         cand = self.generate_initial_candidates()
         new_patterns  = cand
         self.freq_items = []
 
-        self.print_candidates(new_patterns)
+        #self.print_candidates(new_patterns)
         ## create this weird loop
         while len(new_patterns):
             self.freq_items += new_patterns
@@ -74,4 +79,34 @@ class GSP(SequentialPatternAlgorithm):
             # f.close()
         #self.print_candidates(self.freq_items)
         self._final_sequences = self.freq_items
-        return self._final_sequences
+
+        stop = timer()
+        self._time = stop - start
+        print("Stop GSP Algorithm...")
+        output = self._createOutputDicrionary()
+        return output
+    
+    def _createOutputDicrionary(self):  
+        output = {}
+        parameters = {}
+        sequences = {}
+
+        parameters['algorithm'] = 'GSP'
+        parameters['min_support'] = self._min_support
+        parameters['max_seq_length'] = self._max_seq_length
+        parameters['min_seq_length'] = self._min_seq_length
+
+        for i,seq in enumerate(self._final_sequences) :
+            s = {}
+            s['pattern'] = seq.get_pattern()
+            s['support'] = seq.get_value()
+            sequences[i] = s
+
+        output['parameters'] = parameters
+        output['rows'] = len(self._data)
+        output['found_seq'] = len(self._final_sequences)
+        output['time'] = self._time
+        output['sequences'] = sequences
+    
+        print(output)
+        return output

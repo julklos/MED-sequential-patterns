@@ -3,7 +3,7 @@ from GSP import GSP
 from DataProcessor import DataProcessor
 from prefixspan import PrefixSpan
 import configparser
-
+import json
 
 
 def check_if_spmf(file_name):
@@ -53,7 +53,10 @@ if __name__ == "__main__":
 
     al1 = PrefixSpanAlgorithm(data, min_support)
 
-    al1.run()
+    output_data = al1.run()
+
+    with open(output, 'w') as f:
+        json.dump(output_data, f, indent=4)
     al1.printFinalSequence()
     # al1 = GSP(data,2)
     # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
