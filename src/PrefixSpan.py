@@ -45,7 +45,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
             newAlpha = []
 
             #f can be assembled to the last element of alpha(pattern)
-            if "_" in f :
+            if self.PLACEHOLDER in f :
                 for itemset in alpha.get_pattern() :
                     newAlpha.append(itemset)
  
@@ -99,7 +99,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                 break
 
             else :
-                if len(prefix) > 1 and '_' in itemset and prefix[-1] in itemset[0]:
+                if len(prefix) > 1 and self.PLACEHOLDER in itemset and prefix[-1] in itemset[0]:
                     found = True
                     break
 
@@ -112,7 +112,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
             else:
                 suffix = sequence.get_itemsets()[i:]
                 e = itemset[index:]
-                e[0] = '_'
+                e[0] = self.PLACEHOLDER
                 suffix[0] = e
 
             if len(suffix) > 0 :
@@ -150,7 +150,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                                 _seqFreq[item] = 1
                     
                 #first itemset begin with place holder
-                if '_' in sequence.get_itemsets()[0]:
+                if self.PLACEHOLDER in sequence.get_itemsets()[0]:
                     for item in sequence.get_itemsets()[0][1:]:
                         if item in _seqFreq:
                             _seqFreq[item] += 1
@@ -164,7 +164,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                         flag_ignore = False
                         continue
                     for item in itemset:
-                        if item not in counted and item != '_':
+                        if item not in counted and item != self.PLACEHOLDER:
                             counted.append(item)
                             if item in seqFreq:
                                 seqFreq[item] += 1
@@ -180,7 +180,7 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
                 newSeqFreq[k] = v
         for k,v in _seqFreq.items() :
             if v >= self._min_support :
-                newSeqFreq['_' + k] = v
+                newSeqFreq[self.PLACEHOLDER + k] = v
         
         return newSeqFreq
 
