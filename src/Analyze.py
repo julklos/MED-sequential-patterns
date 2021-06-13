@@ -93,7 +93,7 @@ if __name__ == "__main__":
     #TO DO: MOZNA STWORZYC PETLE DLA JAKICH PARAMETROW
     rspmf = result_spmf( run_spmf("PrefixSpan",'../data/short_d.spmf', "output.spmf",2, 200) )
     ralg = result_seqalgorithms( run_seqalgorithms("PrefixSpan", 'data/short_d.spmf', "output_short.json", 2, 4, None, 0,"config.cfg" ,-1))
-
+    print(rspmf, ralg)
     results_file = 'test.csv'
     with open(results_file, 'a') as f:
         f.write('algorithm, program,input_file, output_file, min_support, max_length, min_length, limit, time, freq_seq\n')
