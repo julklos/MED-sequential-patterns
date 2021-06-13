@@ -20,7 +20,7 @@ class SequentialPatternAlgorithm(ABC) :
         self._data = data
     
     def printFinalSequence(self):
-        print("Znalezione wzorce sekwencyjne:")
+        print("Found sequential patterns:")
         for sequence in self._final_sequences :
             print(sequence)
        

@@ -2,21 +2,29 @@ from SequentialPatternAlgorithm import SequentialPatternAlgorithm
 from Sequence import Sequence
 from ClientSequence import ClientSequence
 from timeit import default_timer as timer
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
 
 class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
 
     PLACEHOLDER = "_"
 
     def run(self):
-        print("Start Prefix Span Algorithm...")
-        print("Min support:" +str(self._min_support))
-        print("Sequences: " + str(len(self._data)))
+
+        logging.info("Algorithm parameters:")
+        logging.info("Min support: " +str(self._min_support))
+        logging.info("Max length pattern: " + str(self._max_seq_length))
+        logging.info("Min length pattern: " + str(self._min_seq_length))
+        logging.info("Rows: " + str(len(self._data)))
+        logging.info("Start Prefix Span Algorithm...")
         self._final_sequences = []
         start = timer()
         self._prefix_span(ClientSequence([]), self._data)
         stop = timer()
         self._time = (stop - start)
-        print("Stop Prefix Span Algorithm...")
+        logging.info("Stop Prefix Span Algorithm...")
+        logging.info("Time:" + str(self._time ))
         output = self._createOutputDicrionary()
         return output
 
@@ -261,7 +269,5 @@ class PrefixSpanAlgorithm(SequentialPatternAlgorithm):
         output['found_seq'] = len(self._final_sequences)
         output['time'] = self._time
         output['sequences'] = sequences
-
-        print(output)
     
         return output

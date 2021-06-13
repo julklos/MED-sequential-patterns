@@ -4,7 +4,7 @@ from DataProcessor import DataProcessor
 from prefixspan import PrefixSpan
 import configparser
 import json
-
+import logging 
 
 def check_if_spmf(file_name):
     extention = file_name.split('.')[-1]
@@ -46,30 +46,34 @@ if __name__ == "__main__":
     try :
         data = dp.load(input_path)
     except OSError:
-        print("Nie można otworzyć pliku")
+        logging.error("Nie można otworzyć pliku")
 
-    for seq in data:
-         print(seq)
+    # for seq in data:
+    #      print(seq)
 
     al1 = PrefixSpanAlgorithm(data, min_support)
 
     output_data = al1.run()
 
-    with open(output, 'w') as f:
-        json.dump(output_data, f, indent=4)
+    try :
+        with open(output, 'w') as f:
+            json.dump(output_data, f, indent=4)
+        logging.info('Output saved to file')
+    except Exception as e:
+        print(e)
     al1.printFinalSequence()
     # al1 = GSP(data,2)
     # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
     # print( "here", al1.run() )
 
-    db = [
-            ['C', 'A', 'G', 'A', 'A', 'G','T' ],
-            ['T', 'G','A','C','A','G'],
-            ['G','A','A','G','T'],
-            []
-        ]
+    # db = [
+    #         ['C', 'A', 'G', 'A', 'A', 'G','T' ],
+    #         ['T', 'G','A','C','A','G'],
+    #         ['G','A','A','G','T'],
+    #         []
+    #     ]
 
-    print(PrefixSpan(db).frequent(3))
+    # print(PrefixSpan(db).frequent(3))
 
 
     

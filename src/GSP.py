@@ -4,6 +4,7 @@ import itertools
 from Transaction import Transaction
 from ClientSequence import ClientSequence
 from timeit import default_timer as timer
+import logging
 
 class GSP(SequentialPatternAlgorithm):
 
@@ -23,7 +24,7 @@ class GSP(SequentialPatternAlgorithm):
         """
 		Given existing patterns, generate a set of new patterns, one longer.
 		"""
-        print ("Generating new candidates...")
+        # print ("Generating new candidates...")
         pairs = list(itertools.combinations(freq_pat, 2))
         new_candidates = []
         for pair in pairs:
@@ -58,8 +59,13 @@ class GSP(SequentialPatternAlgorithm):
         return output
     
     def run(self):
-        ## add- max.sequential_length
-        print("Start GSP Algorithm...")
+        logging.info("Algorithm parameters:")
+        logging.info("Min support: " +str(self._min_support))
+        logging.info("Max length pattern: " + str(self._max_seq_length))
+        logging.info("Min length pattern: " + str(self._min_seq_length))
+        logging.info("Rows: " + str(len(self._data)))
+        logging.info("Start GSP Algorithm...")
+
         start = timer()
 
         cand = self.generate_initial_candidates()
@@ -82,7 +88,8 @@ class GSP(SequentialPatternAlgorithm):
 
         stop = timer()
         self._time = stop - start
-        print("Stop GSP Algorithm...")
+        logging.info("Stop GSP Algorithm...")
+        logging.info("Time:" + str(self._time ))
         output = self._createOutputDicrionary()
         return output
     
@@ -108,5 +115,4 @@ class GSP(SequentialPatternAlgorithm):
         output['time'] = self._time
         output['sequences'] = sequences
     
-        print(output)
         return output
