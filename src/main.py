@@ -26,7 +26,7 @@ if __name__ == "__main__":
         print(str(e))
     config.read(config_path)
     algorithm = config.get('configuration', 'algorithm', raw=False)
-    limit = config.getint('configuration', 'limit')
+    limit = config.get('configuration', 'limit')
     input_path = str(config.get('configuration', 'input', raw=False))
     output = config.get('configuration', 'output', raw=False)
     min_support = config.getfloat('configuration', 'min_support')

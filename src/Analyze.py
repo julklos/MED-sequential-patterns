@@ -12,6 +12,7 @@ def create_config(confname, algorithm, limit, input, output, min_support, max_le
         "min_support = {min_support}\n"
         "max_length = {max_length}\n"
         "min_length = {min_length}\n"
+        "splitter = {splitter}\n"
     )
 
     config = config.format(
@@ -53,7 +54,7 @@ def result_spmf(output):
 
 def run_seqalgorithms(algorithm, input_path, output_path, min_support, max_length, limit, min_length, config_file, splitter):
     create_config(config_file, algorithm, limit, input_path, output_path, min_support, max_length, min_length, splitter)
-    results = subprocess.run(['python','src/main.py'], capture_output=True)
+    results = subprocess.run(['python','src/main.py', config_file], capture_output=True)
 
     return results.stdout
 
