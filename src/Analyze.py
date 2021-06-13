@@ -71,10 +71,26 @@ def result_seqalgorithms(output):
             results['found_seq'] = res[2]
     return results
 
+
+def compare_output_files(seqalg_out, spmf_out):
+    spmf_lines = []
+    with open(spmf_out, 'r') as f:
+        for _, l in enumerate(f):
+            spmf_lines.append(l.split('-1')[0].strip())
+    spmf_lines.sort()
+
+    sa_lines = []
+    #TODO: read JSON
+    # with open(seqalg_out, 'r') as f:
+    #     for _, l in enumerate(f):
+    #         sa_lines.append(l.strip())
+
+    return set(spmf_lines) == set(sm_lines)
+
 if __name__ == "__main__":
 
     #TO DO: MOZNA STWORZYC PETLE DLA JAKICH PARAMETROW
-    rspmf = result_spmf( run_spmf("PrefixSpan",'data/short_d.spmf', "output.txt",2, 200) )
+    rspmf = result_spmf( run_spmf("PrefixSpan",'data/short_d.spmf', "output.spmf",2, 200) )
     ralg = result_seqalgorithms( run_seqalgorithms("PrefixSpan", 'data/short_d.spmf', "output_short.json", 2, 4, None, 0,"config.conf" ,-1))
 
     results_file = 'test.csv'
