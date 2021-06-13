@@ -61,6 +61,8 @@ if __name__ == "__main__":
         raise Exception("Unknown algorithm: choose GSP or PrefixSpan")
 
     output_data = al1.run()
+    print("Time: " + str(output_data['time']))
+    print("Found sequences: " + str(output_data['found_seq']))
     try :
         with open(output, 'w') as f:
             json.dump(output_data, f, indent=4)
