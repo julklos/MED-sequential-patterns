@@ -7,6 +7,15 @@ class ClientSequence():
         return len(self._items)
     def  __str__(self):
         return str(self._items) + " #SUP: "+ str(self._freq)
+    
+    def get_pattern(self):
+        return self._items
+    
+    def get_value(self):
+        return self._freq
+
+    def get_pattern_size(self):
+        return len(self._items)
         
     def generate_candidates(self,_transaction):
         if self._items[:-1] == _transaction._items[:-1]:
@@ -48,3 +57,4 @@ class ClientSequence():
             else:
                 return False
         return True
+

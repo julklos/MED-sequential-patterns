@@ -5,7 +5,6 @@ class Sequence() :
         self._id = id
         self._itemsets = itemsets
         self._transactions = [Transaction(items) for items in  self._itemsets]
-        print(self._itemsets)
         
     def  __str__(self):
         return "Id: "+str(self._id)+" items: "+ str(self._itemsets)
@@ -16,6 +15,9 @@ class Sequence() :
     
     def get_itemsets(self):
         return self._itemsets
+    
+    def set_itemset(self, new_itemset):
+        self._itemsets = new_itemset
     
     def get_id(self):
         return self._id
@@ -30,3 +32,5 @@ class Sequence() :
             if len(new_itemset) != 0 :
                 new_itemsets.append(new_itemset)
         return new_itemsets
+    
+

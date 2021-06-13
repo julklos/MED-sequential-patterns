@@ -65,13 +65,12 @@ class GSP(SequentialPatternAlgorithm):
         ## create this weird loop
         while len(new_patterns):
             self.freq_items += new_patterns
+            print( len(self.freq_items[-1]._items), self._max_seq_length)
+            if len(self.freq_items[-1]._items) >= self._max_seq_length:
+                break
             candidates = self.generate_new_candidates(self.freq_items)
             new_patterns = self.filter_candidates (candidates)
-            # self.print_candidates(new_patterns)
-            # f = open("demofile"+str(k_items)+"+1.txt", "a")
-            # content = self.write_candidates(new_patterns)
-            # f.write(content)
-            # f.close()
-        #self.print_candidates(self.freq_items)
+        if self._min_seq_length:
+            self.freq_items = [freq_item for freq_item in self.freq_items if len(freq_item._items) >= self._min_seq_length]
         self._final_sequences = self.freq_items
         return self._final_sequences
