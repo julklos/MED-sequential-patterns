@@ -32,7 +32,7 @@ def create_config(confname, algorithm, limit, input, output, min_support, max_le
 def run_spmf(algorithm, input_path, output_path, min_support, max_length):
 
     spmf = Spmf(algorithm, input_filename=input_path, output_filename=output_path, 
-                        spmf_bin_location_dir="env/lib/python3.8/site-packages/spmf/", arguments=[min_support, max_length])
+                        spmf_bin_location_dir="../env/Lib/site-packages/spmf/", arguments=[min_support, max_length])
     
     results =  spmf.run()
     return results

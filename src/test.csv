@@ -1,0 +1,112 @@
+algorithm, program,input_file, output_file, min_support, max_length, min_length, limit, time, freq_seq
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_0.json,0.1,None,0,None, 92.26720929999999
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_1.json,0.1,15,0,None, 93.8624215
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_2.json,0.1,10,0,None, 93.16055929999999
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_3.json,0.1,8,0,None, 96.4899143
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_4.json,0.1,5,0,None, 96.120296
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_5.json,0.1,None,0,None, 95.29451259999999
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_6.json,0.1,None,0,500000, 92.8846111
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_7.json,0.1,None,0,100000, 93.796152
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_8.json,0.1,None,0,50000, 91.77010940000001
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_9.json,0.1,None,0,10000, 91.8810125
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_10.json,0.1,None,0,5000, 92.94008500000001
+,9
+
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_11.json,0.05,None,0,None, 185.091353,33
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_12.json,0.1,None,0,None, 93.2942583,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_13.json,0.15,None,0,None, 80.0374803,7
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_14.json,0.2,None,0,None, 69.4672232,5
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_15.json,0.3,None,0,None, 62.48915,4
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_PrefixSpan_kosarak_16.json,0.4,None,0,None, 35.249374100000004,2
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_0.json,0.1,None,0,None, 462.1145125,9
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_1.json,0.1,None,0,500000, 456.5606604,9
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_2.json,0.1,None,0,100000, 457.8931261,9
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_3.json,0.1,None,0,50000, 484.658459,9
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_4.json,0.1,None,0,10000, 474.2072282,9
+GSP, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_5.json,0.1,None,0,5000, 489.7681545,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_6.json,0.1,None,0,None, 796.8510314,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_7.json,0.15,None,0,None, 280.8212611,7
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_8.json,0.2,None,0,None, 142.7542449,5
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_9.json,0.3,None,0,None, 146.3060184,4
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_10.json,0.4,None,0,None, 31.686816500000003,2
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_6.json,0.1,None,0,None, 443.29963549999997,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_7.json,0.1,15,0,None, 436.4573492,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_8.json,0.1,10,0,None, 442.03691180000004,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_9.json,0.1,8,0,None, 442.1927948,9
+PrefixSpan, seqalgorithms ,../data/kosarak_sequences.spmf,output_GSP_kosarak_10.json,0.1,5,0,None, 447.55737309999995,9
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_0.json,0.15,None,0,None, 1269.1310931,5123
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_1.json,0.2,None,0,None, 306.9245987,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_2.json,0.3,None,0,None, 30.139396100000003,47
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_3.json,0.4,None,0,None, 4.7253008,5
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_4.json,0.5,None,0,None, 0.6228978999999999,0
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_5.json,0.2,None,0,None, 299.1457526,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_6.json,0.2,50,0,None, 299.81092259999997,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_7.json,0.2,30,0,None, 300.97409880000004,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_8.json,0.2,20,0,None, 298.96043050000003,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_9.json,0.2,None,0,None, 358.6919771,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_10.json,0.2,None,0,15000, 361.1332676,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_11.json,0.2,None,0,10000, 318.6928659,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_12.json,0.2,None,0,5000, 300.1655357,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_13.json,0.2,None,0,1000, 299.4096136,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_14.json,0.2,None,0,500, 299.3353667,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_15.json,0.2,None,0,None, 303.7341733,938
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_16.json,0.3,None,0,None, 29.2065066,47
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_17.json,0.4,None,0,None, 4.4375613,5
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_18.json,0.5,None,0,None, 0.6224944000000003,0
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_19.json,0.6,None,0,None, 0.5790330999999997,0
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_0.json,0.3,None,0,None, 2027.8163249000002,47
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_1.json,0.4,None,0,None, 15.769857900000002,5
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_2.json,0.5,None,0,None, 0.32825409999999966,0
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_3.json,0.6,None,0,None, 0.43843710000000025,0
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_4.json,0.35,None,0,None, 503.0784458,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_5.json,0.36,None,0,None, 188.0435306,17
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_6.json,0.45,None,0,None, 0.2974709999999998,0
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_20.json,0.35,None,0,None, 19.436851299999997,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_21.json,0.36,None,0,None, 13.2788052,17
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_22.json,0.45,None,0,None, 0.6483204000000002,0
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_7.json,0.35,None,0,None, 688.2358161,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_8.json,0.35,50,0,None, 489.1053648,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_9.json,0.35,30,0,None, 492.3060724,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_10.json,0.35,20,0,None, 486.8005754,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_11.json,0.35,None,0,None, 491.8180632,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_12.json,0.35,None,0,15000, 500.13351090000003,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_13.json,0.35,None,0,10000, 507.4916338,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_14.json,0.35,None,0,5000, 500.00263220000005,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_15.json,0.35,None,0,1000, 494.2137869,28
+GSP, seqalgorithms ,../data/FIFA.spmf,output_GSP_fifa_16.json,0.35,None,0,500, 493.677389,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_11.json,0.35,None,0,None, 19.2040629,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_12.json,0.35,None,0,15000, 18.9322376,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_13.json,0.35,None,0,10000, 19.2407558,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_14.json,0.35,None,0,5000, 19.0479975,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_15.json,0.35,None,0,1000, 19.124131,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_16.json,0.35,None,0,500, 19.3531713,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_11.json,0.35,None,0,None, 20.4565092,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_12.json,0.35,50,0,None, 18.8140916,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_13.json,0.35,30,0,None, 19.621806,28
+PrefixSpan, seqalgorithms ,../data/FIFA.spmf,output_PrefixSpan_fifa_14.json,0.35,20,0,None, 19.085255,28
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_0.json,0.99,None,0,None, 1241.4456812,38765
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_1.json,0.99,None,0,1000, 1295.40426,38765
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_2.json,0.99,None,0,700, 1244.1072227,38765
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_3.json,0.99,None,0,500, 1252.5084767,38765
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_4.json,0.99,None,0,200, 1277.0266842,38765
+PrefixSpan, seqalgorithms ,../data/MT745584_SPMF.spmf,output_PrefixSpan_fifa_5.json,0.99,None,0,100, 1278.2568349,38765
