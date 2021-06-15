@@ -7,6 +7,7 @@ import configparser
 import json
 import logging 
 import sys
+import math
 
 def check_if_spmf(file_name):
     extention = file_name.split('.')[-1]
@@ -14,6 +15,7 @@ def check_if_spmf(file_name):
 
 
 if __name__ == "__main__":
+    print("MAIN")
     ## read path to config file
     config_path = sys.argv[1]
     if not config_path:
@@ -30,10 +32,17 @@ if __name__ == "__main__":
     input_path = str(config.get('configuration', 'input', raw=False))
     output = config.get('configuration', 'output', raw=False)
     min_support = config.getfloat('configuration', 'min_support')
-    max_length = config.getint('configuration', 'max_length')
+    max_length = config.get('configuration', 'max_length')
     min_length = config.getint('configuration', 'min_length')
     splitter = config.get('configuration', 'splitter')
-
+    if limit == "None":
+        limit = math.inf
+    else:
+        limit = int(limit)
+    if max_length == "None":
+        max_length = math.inf
+    else:
+        max_length = int(max_length)
     # TODO: pętla - wpisywanie nazwy pliku,  sprawdzenie czy spfm i txt- txt, chyba trzeba dodac parsowanie per nr indexu oraz czas (?)
     # .txt newline = "\n" splitter= " "
     # .spmf newline= "-2" splitter = "-1"
@@ -45,7 +54,7 @@ if __name__ == "__main__":
         newline = "\n"
         splitter = splitter
     
-
+    print('here')
     dp = DataProcessor(newline=newline,  splitter=splitter)
     try :
         data = dp.load(input_path)
