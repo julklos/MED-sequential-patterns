@@ -34,3 +34,25 @@ venv
 If you install new packages, update requirements.txt using:
 
 `pip freeze > requirements.txt`
+
+## 4. Run program
+
+### Configuration file
+Program needs configuration file in .conf format as an argument. 
+Example setup.conf
+```
+[configuration]
+algorithm = GSP
+limit = 100
+input = data/short_d.spmf
+output = output.json
+min_support = 0.5
+max_length = 3
+min_length = 1
+splitter = ,
+```
+### Run - UNIX/macOS
+```
+source env/bin/activate
+python main.py setup.conf
+```
