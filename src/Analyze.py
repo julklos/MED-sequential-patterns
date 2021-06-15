@@ -73,21 +73,6 @@ def result_seqalgorithms(output):
     return results
 
 
-def compare_output_files(seqalg_out, spmf_out):
-    spmf_lines = []
-    with open(spmf_out, 'r') as f:
-        for _, l in enumerate(f):
-            spmf_lines.append(l.split('-1')[0].strip())
-    spmf_lines.sort()
-
-    sa_lines = []
-    #TODO: read JSON
-    # with open(seqalg_out, 'r') as f:
-    #     for _, l in enumerate(f):
-    #         sa_lines.append(l.strip())
-
-    return set(spmf_lines) == set(sm_lines)
-
 if __name__ == "__main__":
 
     #TO DO: MOZNA STWORZYC PETLE DLA JAKICH PARAMETROW
