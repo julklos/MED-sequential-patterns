@@ -51,8 +51,7 @@ max_length = 3
 min_length = 1
 splitter = ,
 ```
-### Run 
-UNIX/macOS
+### Run - UNIX/macOS
 ```
 source env/bin/activate
 python main.py setup.conf
