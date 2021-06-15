@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 import math
-import json
 
 class SequentialPatternAlgorithm(ABC) :
 

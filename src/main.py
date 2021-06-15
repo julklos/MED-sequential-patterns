@@ -2,7 +2,6 @@
 from PrefixSpan import PrefixSpan
 from GSP import GSP 
 from DataProcessor import DataProcessor
-#from prefixspan import PrefixSpan
 import configparser
 import json
 import logging 
@@ -64,7 +63,7 @@ if __name__ == "__main__":
     if check_parameters(limit, min_support, max_length, min_length) == False :
         raise Exception("Parameteres not valid")
 
-    dp = DataProcessor(newline=newline,  splitter=splitter)
+    dp = DataProcessor(newline=newline,  splitter=splitter, limit=limit)
     try :
         data = dp.load(input_path)
     except OSError:
