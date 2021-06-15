@@ -35,7 +35,7 @@ If you install new packages, update requirements.txt using:
 
 `pip freeze > requirements.txt`
 
-## 4. Run program - UNIX/macOS
+## 4. Run program
 
 ### Configuration file
 Program needs configuration file in .conf format as an argument. 
@@ -51,7 +51,8 @@ max_length = 3
 min_length = 1
 splitter = ,
 ```
-### Run
+### Run 
+UNIX/macOS
 ```
 source env/bin/activate
 python main.py setup.conf
