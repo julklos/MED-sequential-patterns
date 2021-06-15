@@ -98,7 +98,7 @@ class GSP(SequentialPatternAlgorithm):
         sequences = {}
 
         parameters['algorithm'] = 'GSP'
-        parameters['min_support'] = self._min_support
+        parameters['min_support'] = self._min_support_frac
         parameters['max_seq_length'] = self._max_seq_length
         parameters['min_seq_length'] = self._min_seq_length
 

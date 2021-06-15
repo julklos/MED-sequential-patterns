@@ -6,6 +6,7 @@ class SequentialPatternAlgorithm(ABC) :
     def __init__(self, data, min_support = 0.01, max_seq_length = math.inf, min_seq_length = 1, limit = 2000):
         self._data = data
         self._final_sequences = {}
+        self._min_support_frac = min_support
         self._min_support = int(min_support * len(self._data))
         if self._min_support <= 0:
             raise ValueError("Min support cannot be 0")

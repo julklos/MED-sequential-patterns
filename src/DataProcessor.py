@@ -8,7 +8,7 @@ class DataProcessor():
     def __init__(self, newline = "-2", splitter = "-1", limit = math.inf):
         self.newline = newline
         self.splitter = splitter
-        self.limit = limit
+        self.limit = int(limit)
 
     def load(self,path):
         return self.load_file(path)
