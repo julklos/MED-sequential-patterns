@@ -2,16 +2,35 @@
 from PrefixSpan import PrefixSpan
 from GSP import GSP 
 from DataProcessor import DataProcessor
-#from prefixspan import PrefixSpan
 import configparser
 import json
 import logging 
 import sys
 import math
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.ERROR)
 
 def check_if_spmf(file_name):
     extention = file_name.split('.')[-1]
     return "spmf" == extention
+
+def check_if_number(min, max, value):
+    try :
+        value = float(value)
+        if value >= min and value <= max :
+            return True
+        else:
+            print(value, value>= min, min)
+            raise Exception("Parametr should be in range {} - {}".format(min,max))
+    except Exception as e:
+        logging.error(e)
+        return False
+
+def check_parameters(limit, min_support, max_length, min_length):
+    if check_if_number(0, math.inf, limit) and check_if_number(0, 1, min_support) and check_if_number(1,math.inf, max_length) and check_if_number(0, math.inf, min_length):
+        return True
+    else: return False
 
 
 if __name__ == "__main__":
@@ -50,12 +69,13 @@ if __name__ == "__main__":
         newline = "-2"
         splitter = "-1"
     else:
-        # TODO: pobranie z pliku
         newline = "\n"
         splitter = splitter
     
-    print('here')
-    dp = DataProcessor(newline=newline,  splitter=splitter)
+    if check_parameters(limit, min_support, max_length, min_length) == False :
+        raise Exception("Parameteres not valid")
+
+    dp = DataProcessor(newline=newline,  splitter=splitter, limit=limit)
     try :
         data = dp.load(input_path)
     except OSError:
@@ -79,19 +99,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
 
-    #al1.printFinalSequence()
-
-    # min_support = 2 # TODO parametr z pliku- czy z zakresu 0-1?
-    # print( "here", al1.run() )
-
-    # db = [
-    #         ['C', 'A', 'G', 'A', 'A', 'G','T' ],
-    #         ['T', 'G','A','C','A','G'],
-    #         ['G','A','A','G','T'],
-    #         []
-    #     ]
-
-    # print(PrefixSpan(db).frequent(3))
 
 
 

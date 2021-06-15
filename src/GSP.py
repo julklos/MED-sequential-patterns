@@ -76,7 +76,7 @@ class GSP(SequentialPatternAlgorithm):
         ## create this weird loop
         while len(new_patterns):
             self.freq_items += new_patterns
-            print( len(self.freq_items[-1]._items), self._max_seq_length)
+            #print( len(self.freq_items[-1]._items), self._max_seq_length)
             if len(self.freq_items[-1]._items) >= self._max_seq_length:
                 break
             candidates = self.generate_new_candidates(self.freq_items)
@@ -98,7 +98,7 @@ class GSP(SequentialPatternAlgorithm):
         sequences = {}
 
         parameters['algorithm'] = 'GSP'
-        parameters['min_support'] = self._min_support
+        parameters['min_support'] = self._min_support_frac
         parameters['max_seq_length'] = self._max_seq_length
         parameters['min_seq_length'] = self._min_seq_length
 

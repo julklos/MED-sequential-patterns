@@ -1,11 +1,14 @@
 from Sequence import Sequence
 import math
 class DataProcessor():
+    '''
+    Class responsibile for loadind and preprocessing spmf and text file
+    '''
 
     def __init__(self, newline = "-2", splitter = "-1", limit = math.inf):
         self.newline = newline
         self.splitter = splitter
-        self.limit = limit
+        self.limit = int(limit)
 
     def load(self,path):
         return self.load_file(path)
@@ -59,7 +62,6 @@ class DataProcessor():
         # split itemsets
         itemset = itemset.split(splitter)
         # delete whitespaces
-        #itemset = [self.split_into_char(i.replace(" ","")) for i in itemset if i.strip()]
         itemset = [i.strip() for i in itemset]
         if splitter == "-1":
             itemset = [self.preprocess_spmf_itemset(i, " ") for i in itemset if i]
