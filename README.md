@@ -35,7 +35,7 @@ If you install new packages, update requirements.txt using:
 
 `pip freeze > requirements.txt`
 
-## 4. Run program
+## 4. Run program - UNIX/macOS
 
 ### Configuration file
 Program needs configuration file in .conf format as an argument. 
